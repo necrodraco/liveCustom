@@ -7,7 +7,8 @@ How to use on the pc client:
 1. Download the newest repo or use an git clone. 
 2. name the getting folder "expansions". It should contain all files you download
 3. place it in ygopro. 
-4. Enjoy the cards
+4. Copy the ygopro/expansions/pics folder into ygopro/pics
+5. Enjoy the cards
 
 CAUTION: EVERY Custom Made Cards cannot be used Online. You can only use them against the AI. 
 
