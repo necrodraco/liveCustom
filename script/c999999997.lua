@@ -4,6 +4,7 @@
 function c999999997.initial_effect(c)
 	c:EnableReviveLimit()
 	--act limit
+	--removed because it ends in an crashed script(?)
 	--local e1=Effect.CreateEffect(c)
 	--e1:SetDescription(aux.Stringid(999999997,0))
 	--e1:SetType(EFFECT_TYPE_IGNITION)
