@@ -47,7 +47,7 @@ function c999999998.thop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c999999998.costfilter(c,tp)
-	return c:IsSetCard(0x8e) and (c:IsLocation(LOCATION_HAND) or c:IsFaceup()) and c:IsAbleToGraveAsCost() and Duel.GetMZoneCount(tp,c)>0
+	return c:IsSetCard(0x8e) and (c:IsLocation(LOCATION_HAND) or c:IsFaceup()) and c:IsAbleToGraveAsCost()-- and Duel.GetMZoneCount(tp,c)>0
 end
 function c999999998.spcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c999999998.costfilter,tp,LOCATION_ONFIELD+LOCATION_HAND,0,1,nil,tp) end
