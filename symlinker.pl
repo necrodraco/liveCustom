@@ -34,7 +34,7 @@ print "inPath: $abs_path\n";
 print "outPath: $out_path\n"; 
 foreach my $folder('pics', 'script'){
 	
-	foreach my $count(100000000..999999999){
+	foreach my $count(999999000..999999999){
 		my $filename = "$count.jpg"; 
 		$filename = "c$count.lua" if($folder eq 'script');
 		symlink "$abs_path/$folder/$filename","$out_path/$folder/$filename";
