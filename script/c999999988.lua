@@ -1,7 +1,7 @@
 --閃刀機関－マルチロール
 --Brandish Mechanism Multi-Roll
 --Script by nekrozar
---used by Necrodraco
+--reused by Necrodraco
 function c999999988.initial_effect(c)
 	--Activate
 	local e1=Effect.CreateEffect(c)

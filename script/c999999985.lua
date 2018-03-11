@@ -1,7 +1,7 @@
 --閃刀空域－エリアゼロ
 --Brandish Airspace Area Zero
 --Scripted by Eerie Code
---used by Necrodraco
+--reused by Necrodraco
 function c999999985.initial_effect(c)
 	--activate
 	local e1=Effect.CreateEffect(c)

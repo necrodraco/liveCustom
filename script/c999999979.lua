@@ -1,7 +1,7 @@
 --閃刀術式－アフターバーナー
 --Brandish Skill Afterburner
 --Scripted by ahtelel
---used by Necrodraco
+--reused by Necrodraco
 function c999999979.initial_effect(c)
     --Activate
     local e1=Effect.CreateEffect(c)
@@ -15,7 +15,11 @@ function c999999979.initial_effect(c)
     c:RegisterEffect(e1)
 end
 function c999999979.cfilter(c)
-    return c:GetSequence()<5
+    monsterCount = Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)
+    if monsterCount==0 or (monsterCount==1 and c:GetSummonLocation()==LOCATION_EXTRA and c:IsLocation(LOCATION_MZONE)) then
+        return false
+    end
+    return true
 end
 function c999999979.condition(e,tp,eg,ep,ev,re,r,rp)
     return not Duel.IsExistingMatchingCard(c999999979.cfilter,tp,LOCATION_MZONE,0,1,nil)

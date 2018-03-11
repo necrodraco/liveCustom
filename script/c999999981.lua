@@ -1,7 +1,7 @@
 --閃刀機構－ハーキュリーベース
 --Brandish Mechanoid Hercules Base
 --Script by nekrozar
---used by Necrodraco
+--reused by Necrodraco
 function c999999981.initial_effect(c)
 	--equip Procedure
 	aux.AddEquipProcedure(c,nil,nil,nil,nil,nil,nil,c999999981.condition)
@@ -41,7 +41,11 @@ function c999999981.initial_effect(c)
 	c:RegisterEffect(e5)
 end
 function c999999981.cfilter(c)
-	return c:GetSequence()<5
+	monsterCount = Duel.GetFieldGroupCount(tp,LOCATION_MZONE,0)
+	if monsterCount==0 or (monsterCount==1 and c:GetSummonLocation()==LOCATION_EXTRA and c:IsLocation(LOCATION_MZONE)) then
+		return false
+	end
+	return true
 end
 function c999999981.condition(e,tp,eg,ep,ev,re,r,rp)
 	return not Duel.IsExistingMatchingCard(c999999981.cfilter,tp,LOCATION_MZONE,0,1,nil)
