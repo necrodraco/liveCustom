@@ -4,7 +4,7 @@
 function c999999956.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFunRep(c,c999999956.ḿatfilter,2,false)
+	aux.AddFusionProcFunRep(c,c999999956.matfilter,2,false)
 	--special summon rule
 	local e7=Effect.CreateEffect(c)
 	e7:SetType(EFFECT_TYPE_FIELD)

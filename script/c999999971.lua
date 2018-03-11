@@ -70,13 +70,13 @@ function c999999971.matfilter(c,lc,sumtype,tp)
 	return c:IsRace(RACE_CYBERSE,lc,sumtype,tp) and c:IsType(TYPE_FUSION,lc,sumtype,tp)
 end
 function c999999971.damval1(e,re,val,r,rp,rc)
-	if r&REASON_EFFECT~=0 then return 0
+	if bit.band(r,REASON_EFFECT)~=0 then return 0
 	else return val end
 end
 function c999999971.damval2(e,re,val,r,rp,rc)
 	local c=e:GetHandler()
-	if r&REASON_EFFECT>0 and Duel.GetFlagEffect(tp,999999971)~=0 then return val end
-	if r&REASON_BATTLE+REASON_EFFECT~=0 and c:GetFlagEffect(999999971)==0 then
+	if bit.band(r,REASON_EFFECT)>0 and Duel.GetFlagEffect(tp,999999971)~=0 then return val end
+	if bit.band(r,REASON_BATTLE+REASON_EFFECT)~=0 and c:GetFlagEffect(999999971)==0 then
 		c:RegisterFlagEffect(999999971,RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END,0,1)
 		return 0
 	end

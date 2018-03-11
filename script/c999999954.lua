@@ -31,7 +31,7 @@ function c999999954.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c999999954.spcost(e,c,tp,st)
-	if bit.band(st,SUMMON_TYPE_FUSIION)~=SUMMON_TYPE_FUSION then return true end
+	if bit.band(st,SUMMON_TYPE_FUSION)~=SUMMON_TYPE_FUSION then return true end
 	return Duel.GetFieldGroupCount(tp,LOCATION_EXTRA,0)-Duel.GetFieldGroupCount(tp,0,LOCATION_EXTRA)>=3
 end
 

@@ -119,7 +119,7 @@ end
 
 --Borrowed Code of Starving Venom Pendulum Contact Fusion
 function c999999965.matfilter(c,scard,sumtype,tp)
-	return c:IsIsType(TYPE_PENDULUM,scard,sumtype,tp)
+	return c:IsType(TYPE_PENDULUM,scard,sumtype,tp)
 end
 function c999999965.spfilter(c,fc)
 	return c999999965.matfilter(c) and c:IsCanBeFusionMaterial(fc)
