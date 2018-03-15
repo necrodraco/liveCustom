@@ -98,7 +98,7 @@ end
 
 --Borrowed Code of Starving Venom Pendulum Contact Fusion
 function c999999957.matfilter(c,scard,sumtype,tp)
-	return c:IsIsRace(RACE_ZOMBIE,scard,sumtype,tp)
+	return c:IsRace(RACE_ZOMBIE,scard,sumtype,tp)
 end
 function c999999957.spfilter(c,fc)
 	return c999999957.matfilter(c) and c:IsCanBeFusionMaterial(fc)
