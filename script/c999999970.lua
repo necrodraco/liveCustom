@@ -29,17 +29,17 @@ function c999999970.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetCountLimit(1)
-	e1:SetTarget(c999999970.target)
+	e1:SetTarget(c999999970.ctarget)
 	e1:SetOperation(c999999970.operation)
 	c:RegisterEffect(e1)
 end
 function c999999970.filter(c,e,tp,zone)
 	return c:IsLevelBelow(4) and c:IsType(TYPE_NORMAL) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,zone)
 end
-function c999999970.target(e,tp,eg,ep,ev,re,r,rp,chk)
+function c999999970.ctarget(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then
-		local zone=e:GetHandler()--:GetLinkedZone(tp)
-		return zone~=0 and Duel.IsExistingMatchingCard(c999999970.filter,tp,LOCATION_HAND,0,1,nil,e,tp,zone)
+		--local zone=e:GetHandler()--:GetLinkedZone(tp)
+		return Duel.IsExistingMatchingCard(c999999970.filter,tp,LOCATION_HAND,0,1,nil,e,tp,zone)
 	end
 	Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,nil,1,tp,LOCATION_HAND)
 end
