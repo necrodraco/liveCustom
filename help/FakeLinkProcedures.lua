@@ -33,13 +33,14 @@ end
 
 --Borrowed Code of Starving Venom Pendulum Contact Fusion and Chimeratech Fortress Dragon
 function cXXXXXXXXX.matfilter(c,scard,sumtype,tp)
-	return -- summon condition. e.g. "c:IsType(TYPE_FIEND,scard,sumtype,tp)" for "n Fiend-Type Monster"
+	return -- summon condition. e.g. "c:IsRace(RACE_FIEND,scard,sumtype,tp)" for "n Fiend-Type Monster"
 end
 function cXXXXXXXXX.splimit(e,se,sp,st)
 	return e:GetHandler():GetLocation()~=LOCATION_EXTRA
 end
 function cXXXXXXXXX.spfilter(c,fc)
-	return cXXXXXXXXX.matfilter(c) and c:IsCanBeFusionMaterial(fc) and (c:IsControler(tp) or c:IsFaceup())
+	return cXXXXXXXXX.matfilter(c)-- and c:IsCanBeFusionMaterial(fc) 
+	and c:IsFaceup()
 end
 function cXXXXXXXXX.spcon(e,c)
 	if c==nil then return true end
