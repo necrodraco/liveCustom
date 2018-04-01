@@ -3,3 +3,8 @@ live2017links
 liveanime
 liveanimelinks
 test.cdb
+test/*.cdb
+test/*.lua
+test/read.yaml
+test/img/*.png
+test/img/*.jpg
