@@ -18,7 +18,7 @@ function c999999958.initial_effect(c)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetTargetRange(0,1)
 	e2:SetTarget(c999999958.relval)
-	e2:SetValue(1)
+	e2:SetValue1
 	c:RegisterEffect(e2)
 	--cannot be target
 	local e3=Effect.CreateEffect(c)

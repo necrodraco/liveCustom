@@ -4,24 +4,32 @@ function c999999948.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,c999999948.matfilter,2,false)
+	--spsummon condition
+	local e100=Effect.CreateEffect(c)
+	e100:SetType(EFFECT_TYPE_SINGLE)
+	e100:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e100:SetCode(EFFECT_SPSUMMON_CONDITION)
+	e100:SetValue(c999999948.splimit)
+	c:RegisterEffect(e100)
 	--special summon rule
-	local e7=Effect.CreateEffect(c)
-	e7:SetType(EFFECT_TYPE_FIELD)
-	e7:SetCode(EFFECT_SPSUMMON_PROC)
-	e7:SetProperty(EFFECT_FLAG_UNCOPYABLE)
-	e7:SetRange(LOCATION_EXTRA)
-	e7:SetCondition(c999999948.spcon)
-	e7:SetOperation(c999999948.spop)
-	c:RegisterEffect(e7)
+	local e99=Effect.CreateEffect(c)
+	e99:SetType(EFFECT_TYPE_FIELD)
+	e99:SetCode(EFFECT_SPSUMMON_PROC)
+	e99:SetProperty(EFFECT_FLAG_UNCOPYABLE)
+	e99:SetRange(LOCATION_EXTRA)
+	e99:SetCondition(c999999948.spcon)
+	e99:SetOperation(c999999948.spop)
+	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
-	local e8=Effect.CreateEffect(c)
-	e8:SetType(EFFECT_TYPE_FIELD)
-	e8:SetCode(EFFECT_SET_POSITION)
-	e8:SetRange(LOCATION_MZONE)
-	e8:SetTarget(c999999948.target)
-	e8:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
-	e8:SetValue(POS_FACEUP_ATTACK)
-	c:RegisterEffect(e8)
+	local e98=Effect.CreateEffect(c)
+	e98:SetType(EFFECT_TYPE_FIELD)
+	e98:SetCode(EFFECT_SET_POSITION)
+	e98:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
+	e98:SetRange(LOCATION_MZONE)
+	e98:SetTarget(c999999948.target)
+	e98:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
+	e98:SetValue(POS_FACEUP_ATTACK)
+	c:RegisterEffect(e98)
 	--atk to 0
 	local e1=Effect.CreateEffect(c)
 	e1:SetCategory(CATEGORY_ATKCHANGE)
@@ -60,7 +68,7 @@ function c999999948.atkop(e,tp,eg,ep,ev,re,r,rp)
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_SET_ATTACK_FINAL)
-		e1:SetValue(0)
+		e1:SetValue0
 		e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
 		tc:RegisterEffect(e1)
 	end
@@ -87,18 +95,23 @@ function c999999948.spop(e,tp,eg,ep,ev,re,r,rp)
 end
 --Borrowed Code of Starving Venom Pendulum Contact Fusion
 function c999999948.spfilter(c,fc)
-	return c999999948.matfilter(c) and c:IsCanBeFusionMaterial(fc)
+	return c999999948.matfilter(c) --and c:IsCanBeFusionMaterial(fc) 
+	and c:IsFaceup()
+end
+function c999999948.splimit(e,se,sp,st)
+	return e:GetHandler():GetLocation()~=LOCATION_EXTRA
 end
 function c999999948.spcon(e,c)
 	if c==nil then return true end
 	local tp=c:GetControler()
-	return Duel.GetLocationCount(tp,LOCATION_MZONE)>-1
-		and Duel.CheckReleaseGroup(tp,c999999948.spfilter,1,nil,c)
+	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
+	return ft>-1
+		and Duel.IsExistingMatchingCard(c999999948.spfilter,tp,LOCATION_ONFIELD,nil,1,nil,tp,ft)
 end
 function c999999948.spop(e,tp,eg,ep,ev,re,r,rp,c)
-	local g=Duel.SelectReleaseGroup(tp,c999999948.spfilter,1,1,nil,c)
-	c:SetMaterial(g)
-	Duel.Release(g,REASON_COST+REASON_FUSION+REASON_MATERIAL)
+	local g=Duel.GetMatchingGroup(c999999948.spfilter,tp,LOCATION_MZONE,nil,nil,tp)
+	local g1=g:Select(tp,1,1,nil)
+	Duel.SendtoGrave(g1,REASON_COST)
 end
 --Borrowed from Area A
 function c999999948.target(e,c)

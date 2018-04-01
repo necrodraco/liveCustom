@@ -14,7 +14,7 @@ function c999999981.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_EQUIP)
 	e3:SetCode(EFFECT_EXTRA_ATTACK_MONSTER)
-	e3:SetValue(1)
+	e3:SetValue1
 	c:RegisterEffect(e3)
 	--draw
 	local e4=Effect.CreateEffect(c)
@@ -57,7 +57,7 @@ end
 function c999999981.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.SetTargetPlayer(tp)
-	Duel.SetTargetParam(1)
+	Duel.SetTargetParam1
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function c999999981.drop(e,tp,eg,ep,ev,re,r,rp)

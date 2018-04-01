@@ -15,7 +15,7 @@ function c999999988.initial_effect(c)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetRange(LOCATION_SZONE)
-	e2:SetCountLimit(1)
+	e2:SetCountLimit1
 	e2:SetTarget(c999999988.tgtg)
 	e2:SetOperation(c999999988.tgop)
 	c:RegisterEffect(e2)
@@ -26,7 +26,7 @@ function c999999988.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
 	e3:SetCode(EVENT_PHASE+PHASE_END)
 	e3:SetRange(LOCATION_SZONE)
-	e3:SetCountLimit(1)
+	e3:SetCountLimit1
 	e3:SetTarget(c999999988.settg)
 	e3:SetOperation(c999999988.setop)
 	c:RegisterEffect(e3)
@@ -89,7 +89,7 @@ function c999999988.regop2(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c999999988.clearop(e,tp,eg,ep,ev,re,r,rp)
-	e:GetLabelObject():SetLabel(0)
+	e:GetLabelObject():SetLabel0
 end
 function c999999988.setfilter(c)
 	return c:IsSetCard(0x115) and c:IsType(TYPE_SPELL) and c:IsSSetable()
