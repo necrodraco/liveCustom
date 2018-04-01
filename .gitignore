@@ -6,5 +6,6 @@ test.cdb
 test/*.cdb
 test/*.lua
 test/read.yaml
+test/script/*.lua
 test/img/*.png
 test/img/*.jpg
