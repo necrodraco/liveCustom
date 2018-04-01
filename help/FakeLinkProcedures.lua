@@ -44,8 +44,8 @@ end
 function cXXXXXXXXX.spcon(e,c)
 	if c==nil then return true end
 	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
-	return ft>-2--Max Count of Monsters
-		and Duel.IsExistingMatchingCard(cXXXXXXXXX.spfilter,tp,LOCATION_ONFIELD,nil,2,nil,tp,ft)--the Number 2 represents the Max Count of Monsters
+	return ft>-2--Min Count of Monsters
+		and Duel.IsExistingMatchingCard(cXXXXXXXXX.spfilter,tp,LOCATION_ONFIELD,nil,2,nil,tp,ft)--the Number 2 represents the Min Count of Monsters
 end
 function cXXXXXXXXX.spop(e,tp,eg,ep,ev,re,r,rp,c)
 	local g=Duel.GetMatchingGroup(cXXXXXXXXX.spfilter,tp,LOCATION_MZONE,nil,nil,tp)
