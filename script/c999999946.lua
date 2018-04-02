@@ -99,8 +99,7 @@ function c999999946.spop2(e,tp,eg,ep,ev,re,r,rp)
 end
 --Borrowed Code of Starving Venom Pendulum Contact Fusion
 function c999999946.spfilter(c,fc)
-	return c999999946.matfilter(c) --and c:IsCanBeFusionMaterial(fc) 
-	and c:IsFaceup()
+	return c999999946.matfilter(c)
 end
 function c999999946.splimit(e,se,sp,st)
 	return e:GetHandler():GetLocation()~=LOCATION_EXTRA

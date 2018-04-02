@@ -143,8 +143,7 @@ function c999999963.matfilter(c,scard,sumtype,tp)
 	return c:IsRace(RACE_INSECT,scard,sumtype,tp)
 end
 function c999999963.spfilter(c,fc)
-	return c999999963.matfilter(c) --and c:IsCanBeFusionMaterial(fc) 
-	and c:IsFaceup()
+	return c999999963.matfilter(c)
 end
 function c999999963.splimit(e,se,sp,st)
 	return e:GetHandler():GetLocation()~=LOCATION_EXTRA
