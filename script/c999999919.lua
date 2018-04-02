@@ -114,8 +114,7 @@ function c999999919.splimit(e,se,sp,st)
 	return e:GetHandler():GetLocation()~=LOCATION_EXTRA
 end
 function c999999919.spfilter(c,fc)
-	return c999999919.matfilter(c)-- and c:IsCanBeFusionMaterial(fc) 
-	and c:IsFaceup()
+	return c999999919.matfilter(c)
 end
 function c999999919.spcon(e,c)
 	if c==nil then return true end
