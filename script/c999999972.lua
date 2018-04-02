@@ -84,7 +84,7 @@ function c999999972.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	return true
 end
 function c999999972.cfilter(c)
-	return c:IsLevel(3) and (c:GetBaseAttack()>0 or c:GetBaseDefense()>0) and c:IsAbleToGraveAsCost()
+	return true --c:IsLevel(3) and (c:GetBaseAttack()>0 or c:GetBaseDefense()>0) and c:IsAbleToGraveAsCost()
 end
 function c999999972.filter(c)
 	return c:IsFaceup() and c:IsSetCard(0xb1)
@@ -94,6 +94,7 @@ function c999999972.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chk==0 then
 		if e:GetLabel()~=1 then return false end
 		e:SetLabel(0)
+		local c=e:GetHandler()
 		return Duel.IsExistingMatchingCard(c999999972.cfilter,tp,LOCATION_DECK,0,1,nil)
 			and Duel.IsExistingTarget(c999999972.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil)
 	end
@@ -123,14 +124,14 @@ function c999999972.atkop(e,tp,eg,ep,ev,re,r,rp)
 end
 
 --Borrowed Code of Starving Venom Pendulum Contact Fusion
-function c999999972.matfilter(c,scard,sumtype,tp)
-	return c:IsLevel(3,scard,sumtype,tp)
+function c999999972.matfilter(c)
+	return c:IsLevel(3)
 end
 function c999999972.splimit(e,se,sp,st)
 	return e:GetHandler():GetLocation()~=LOCATION_EXTRA
 end
 function c999999972.spfilter(c,fc)
-	return c999999972.matfilter(c) --and c:IsCanBeFusionMaterial(fc) 
+	return c999999972.matfilter --and c:IsCanBeFusionMaterial(fc) 
 	and c:IsFaceup()
 end
 function c999999972.spcon(e,c)
