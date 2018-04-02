@@ -19,6 +19,7 @@ function c999999948.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999948.spcon)
 	e99:SetOperation(c999999948.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -68,7 +69,7 @@ function c999999948.atkop(e,tp,eg,ep,ev,re,r,rp)
 		local e1=Effect.CreateEffect(e:GetHandler())
 		e1:SetType(EFFECT_TYPE_SINGLE)
 		e1:SetCode(EFFECT_SET_ATTACK_FINAL)
-		e1:SetValue0
+		e1:SetValue(0)
 		e1:SetReset(RESET_EVENT+0x1fe0000+RESET_PHASE+PHASE_END)
 		tc:RegisterEffect(e1)
 	end

@@ -22,6 +22,7 @@ function c999999994.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999994.spcon)
 	e99:SetOperation(c999999994.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)

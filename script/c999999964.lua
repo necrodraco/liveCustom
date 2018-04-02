@@ -21,6 +21,7 @@ function c999999964.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999964.spcon)
 	e99:SetOperation(c999999964.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -50,7 +51,7 @@ function c999999964.initial_effect(c)
 	e2:SetCode(EFFECT_SUMMON_PROC)
 	e2:SetRange(LOCATION_MZONE)
 	e2:SetTargetRange(LOCATION_HAND,0)
-	e2:SetCountLimit1
+	e2:SetCountLimit(1)
 	e2:SetCondition(c999999964.ntcon)
 	e2:SetTarget(c999999964.nttg)
 	c:RegisterEffect(e2)
@@ -94,7 +95,7 @@ function c999999964.ntcon(e,c,minc)
 	return minc==0 and Duel.GetLocationCount(c:GetControler(),LOCATION_MZONE)>0
 end
 function c999999964.nttg(e,c)
-	return c:IsLevelAbove5 and c:IsRace(RACE_SPELLCASTER)
+	return c:IsLevelAbove(5) and c:IsRace(RACE_SPELLCASTER)
 end
 
 --Borrowed Code of Starving Venom Pendulum Contact Fusion

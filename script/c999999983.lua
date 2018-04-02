@@ -72,7 +72,7 @@ function c999999983.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c999999983.thfilter(c)
-	return c:IsAttribute(ATTRIBUTE_DARK) and c:IsLevelAbove5 and c:IsAbleToHand()
+	return c:IsAttribute(ATTRIBUTE_DARK) and c:IsLevelAbove(5) and c:IsAbleToHand()
 end
 function c999999983.thtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and c999999983.thfilter(chkc) end

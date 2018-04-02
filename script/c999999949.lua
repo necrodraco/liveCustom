@@ -20,6 +20,7 @@ function c999999949.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999949.spcon1)
 	e99:SetOperation(c999999949.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -102,7 +103,7 @@ function c999999949.spcon2(e,tp,eg,ep,ev,re,r,rp)
 	return Duel.GetFlagEffect(tp,999999949)>0
 end
 function c999999949.spfilter(c,e,tp)
-	return c:IsRace(0x1000000) and c:IsLevelBelow4 and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
+	return c:IsRace(0x1000000) and c:IsLevelBelow(4) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
 end
 function c999999949.sptg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsControler(tp) and chkc:IsLocation(LOCATION_GRAVE) and c999999949.spfilter(chkc,e,tp) end

@@ -21,6 +21,7 @@ function c999999976.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999976.spcon)
 	e99:SetOperation(c999999976.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -48,7 +49,7 @@ function c999999976.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e2:SetType(EFFECT_TYPE_IGNITION)
 	e2:SetRange(LOCATION_MZONE)
-	e2:SetCountLimit1
+	e2:SetCountLimit(1)
 	e2:SetTarget(c999999976.distg)
 	e2:SetOperation(c999999976.disop)
 	c:RegisterEffect(e2)
@@ -118,7 +119,7 @@ function c999999976.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return not eg:IsContains(c)-- and eg:FilterCount(c999999976.thcfilter,nil,lg)==2
 end
 function c999999976.thfilter(c)
-	return c:IsRace(RACE_MACHINE) and c:IsLevelAbove5 and c:IsAbleToHand()
+	return c:IsRace(RACE_MACHINE) and c:IsLevelAbove(5) and c:IsAbleToHand()
 end
 function c999999976.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c999999976.thfilter,tp,LOCATION_DECK,0,1,nil) end

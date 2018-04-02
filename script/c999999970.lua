@@ -19,6 +19,7 @@ function c999999970.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999970.spcon)
 	e99:SetOperation(c999999970.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -36,13 +37,13 @@ function c999999970.initial_effect(c)
 	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
 	e1:SetType(EFFECT_TYPE_IGNITION)
 	e1:SetRange(LOCATION_MZONE)
-	e1:SetCountLimit1
+	e1:SetCountLimit(1)
 	e1:SetTarget(c999999970.ctarget)
 	e1:SetOperation(c999999970.operation)
 	c:RegisterEffect(e1)
 end
 function c999999970.filter(c,e,tp,zone)
-	return c:IsLevelBelow4 and c:IsType(TYPE_NORMAL) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,zone)
+	return c:IsLevelBelow(4) and c:IsType(TYPE_NORMAL) and c:IsCanBeSpecialSummoned(e,0,tp,false,false,POS_FACEUP,tp,zone)
 end
 function c999999970.ctarget(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then

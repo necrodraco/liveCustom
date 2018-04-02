@@ -14,7 +14,7 @@ function c999999981.initial_effect(c)
 	local e3=Effect.CreateEffect(c)
 	e3:SetType(EFFECT_TYPE_EQUIP)
 	e3:SetCode(EFFECT_EXTRA_ATTACK_MONSTER)
-	e3:SetValue1
+	e3:SetValue(1)
 	c:RegisterEffect(e3)
 	--draw
 	local e4=Effect.CreateEffect(c)

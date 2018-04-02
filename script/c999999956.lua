@@ -20,6 +20,7 @@ function c999999956.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999956.spcon)
 	e99:SetOperation(c999999956.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -114,7 +115,7 @@ function c999999956.sptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
 	if chk==0 then
 		if e:GetLabel()~=100 then return false end
-		e:SetLabel0
+		e:SetLabel(0)
 		local cg=Duel.GetMatchingGroup(c999999956.cfilter,tp,LOCATION_DECK,0,nil)
 		return Duel.GetLocationCount(tp,LOCATION_MZONE)>0
 			and Duel.IsExistingMatchingCard(c999999956.spfilter,tp,LOCATION_DECK,0,1,nil,e,tp,cg:GetClassCount(Card.GetCode))

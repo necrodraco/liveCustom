@@ -21,6 +21,7 @@ function c999999971.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999971.spcon)
 	e99:SetOperation(c999999971.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -37,7 +38,7 @@ function c999999971.initial_effect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
 	e1:SetCode(EFFECT_CANNOT_RELEASE)
-	e1:SetValue1
+	e1:SetValue(1)
 	c:RegisterEffect(e1)
 	--change damage
 	local e2=Effect.CreateEffect(c)

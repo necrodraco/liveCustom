@@ -21,6 +21,7 @@ function c999999972.initial_effect(c)
 	e99:SetRange(LOCATION_EXTRA)
 	e99:SetCondition(c999999972.spcon)
 	e99:SetOperation(c999999972.spop)
+	e99:SetValue(SUMMON_TYPE_FUSION)
 	c:RegisterEffect(e99)
 	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
 	local e98=Effect.CreateEffect(c)
@@ -40,7 +41,7 @@ function c999999972.initial_effect(c)
 	e1:SetRange(LOCATION_MZONE)
 	e1:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
 	e1:SetTarget(c999999972.indtg)
-	e1:SetValue1
+	e1:SetValue(1)
 	c:RegisterEffect(e1)
 	--destroy replace
 	local e2=Effect.CreateEffect(c)
@@ -57,7 +58,7 @@ function c999999972.initial_effect(c)
 	e3:SetType(EFFECT_TYPE_IGNITION)
 	e3:SetProperty(EFFECT_FLAG_CARD_TARGET)
 	e3:SetRange(LOCATION_MZONE)
-	e3:SetLabel0
+	e3:SetLabel(0)
 	e3:SetCountLimit(1,999999972)
 	e3:SetCost(c999999972.atkcost)
 	e3:SetTarget(c999999972.atktg)
@@ -79,11 +80,11 @@ function c999999972.desreptg(e,tp,eg,ep,ev,re,r,rp,chk)
 	else return false end
 end
 function c999999972.atkcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	e:SetLabel1
+	e:SetLabel(1)
 	return true
 end
 function c999999972.cfilter(c)
-	return c:IsLevel3 and (c:GetBaseAttack()>0 or c:GetBaseDefense()>0) and c:IsAbleToGraveAsCost()
+	return c:IsLevel(3) and (c:GetBaseAttack()>0 or c:GetBaseDefense()>0) and c:IsAbleToGraveAsCost()
 end
 function c999999972.filter(c)
 	return c:IsFaceup() and c:IsSetCard(0xb1)
@@ -92,11 +93,11 @@ function c999999972.atktg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_MZONE) and c999999972.filter(chkc) end
 	if chk==0 then
 		if e:GetLabel()~=1 then return false end
-		e:SetLabel0
+		e:SetLabel(0)
 		return Duel.IsExistingMatchingCard(c999999972.cfilter,tp,LOCATION_DECK,0,1,nil)
 			and Duel.IsExistingTarget(c999999972.filter,tp,LOCATION_MZONE,LOCATION_MZONE,1,nil)
 	end
-	e:SetLabel0
+	e:SetLabel(0)
 	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_TOGRAVE)
 	local g=Duel.SelectMatchingCard(tp,c999999972.cfilter,tp,LOCATION_DECK,0,1,1,nil)
 	Duel.SendtoGrave(g,REASON_COST)
