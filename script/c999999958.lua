@@ -76,8 +76,8 @@ function c999999958.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function c999999958.tdcost(e,tp,eg,ep,ev,re,r,rp,chk)
-	if chk==0 then return Duel.CheckReleaseGroup(tp,Card.IsAttribute,1,nil) end
-	local g=Duel.SelectReleaseGroup(tp,Card.IsAttribute,1,1,nil)
+	if chk==0 then return Duel.CheckReleaseGroup(tp,c999999958.costfilter,1,nil) end
+	local g=Duel.SelectReleaseGroup(tp,c999999958.costfilter,1,1,nil)
 	Duel.Release(g,REASON_COST)
 end
 function c999999958.tdtg(e,tp,eg,ep,ev,re,r,rp,chk)
@@ -93,4 +93,8 @@ function c999999958.tdop(e,tp,eg,ep,ev,re,r,rp)
 			Duel.SendtoDeck(g,nil,1,REASON_EFFECT)
 		end
 	end
+end
+function c999999958.costfilter(c)
+	return c:IsAttribute(ATTRIBUTE_DARK)-- and c:IsAttackAbove(1500)
+		--and Duel.IsExistingMatchingCard(c29876529.dfilter,0,LOCATION_MZONE,LOCATION_MZONE,1,c)
 end

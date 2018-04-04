@@ -49,14 +49,9 @@ function c999999952.thfilter2(c)
 end
 function c999999952.drcost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local c=e:GetHandler()
-	if chk==0 then return ((Duel.CheckReleaseGroup(tp,Card.IsAttribute,1,nil) and Duel.IsPlayerCanDraw(tp,1))
-		or (Duel.CheckReleaseGroup(tp,Card.IsAttribute,1,nil) and Duel.IsExistingMatchingCard(c999999952.thfilter2,tp,LOCATION_DECK,0,1,nil))) end
-	local sg=nil
-	if Duel.IsExistingMatchingCard(c999999952.thfilter2,tp,LOCATION_DECK,0,1,nil) and not Duel.IsPlayerCanDraw(tp,1) then
-		sg=Duel.SelectReleaseGroup(tp,Card.IsAttribute,1,nil)
-	else
-		sg=Duel.SelectReleaseGroup(tp,Card.IsAttribute,1,nil)
-	end
+	if chk==0 then return ((Duel.CheckReleaseGroup(tp,c999999952.costfilter,1,nil) and Duel.IsPlayerCanDraw(tp,1))
+		or (Duel.CheckReleaseGroup(tp,c999999952.costfilter,1,nil) and Duel.IsExistingMatchingCard(c999999952.thfilter2,tp,LOCATION_DECK,0,1,nil))) end
+	local sg=Duel.SelectReleaseGroup(tp,c999999952.costfilter,1,1,nil)
 	e:SetLabelObject(sg:GetFirst())
 	Duel.Release(sg,REASON_COST)
 end
@@ -66,7 +61,7 @@ function c999999952.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 		e:SetCategory(CATEGORY_DRAW+CATEGORY_TOHAND+CATEGORY_SEARCH)
 	end
 	Duel.SetTargetPlayer(tp)
-	Duel.SetTargetParam1
+	Duel.SetTargetParam(1)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function c999999952.drop(e,tp,eg,ep,ev,re,r,rp)
@@ -82,4 +77,8 @@ function c999999952.drop(e,tp,eg,ep,ev,re,r,rp)
 		local p,d=Duel.GetChainInfo(0,CHAININFO_TARGET_PLAYER,CHAININFO_TARGET_PARAM)
 		Duel.Draw(p,d,REASON_EFFECT)
 	end
+end
+function c999999952.costfilter(c)
+	return c:IsAttribute(ATTRIBUTE_DARK)-- and c:IsAttackAbove(1500)
+		--and Duel.IsExistingMatchingCard(c29876529.dfilter,0,LOCATION_MZONE,LOCATION_MZONE,1,c)
 end
