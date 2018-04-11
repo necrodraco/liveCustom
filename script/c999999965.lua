@@ -69,10 +69,10 @@ function c999999965.initial_effect(c)
 	c:RegisterEffect(e3)
 end
 function c999999965.tecon(e,tp,eg,ep,ev,re,r,rp)
-	return e:GetHandler():IsSummonType(SUMMON_TYPE_LINK)
+	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
 end
 function c999999965.tefilter(c)
-	return c:IsType(TYPE_PENDULUM) and not c:IsForbidden()
+	return c:IsType(TYPE_PENDULUM)-- and not c:IsForbidden()
 end
 function c999999965.tetg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.IsExistingMatchingCard(c999999965.tefilter,tp,LOCATION_DECK,0,1,nil) end
@@ -118,7 +118,7 @@ end
 function c999999965.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.SetTargetPlayer(tp)
-	Duel.SetTargetParam1
+	Duel.SetTargetParam(1)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function c999999965.drop(e,tp,eg,ep,ev,re,r,rp)

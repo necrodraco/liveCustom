@@ -6,13 +6,6 @@ function c999999914.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,c999999914.ffilter,2,false)
-	--spsummon condition
-	local e100=Effect.CreateEffect(c)
-	e100:SetType(EFFECT_TYPE_SINGLE)
-	e100:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE)
-	e100:SetCode(EFFECT_SPSUMMON_CONDITION)
-	e100:SetValue(c999999914.splimit)
-	c:RegisterEffect(e100)
 	--special summon rule
 	local e99=Effect.CreateEffect(c)
 	e99:SetType(EFFECT_TYPE_FIELD)
@@ -68,9 +61,6 @@ end
 --Borrowed Code of Starving Venom Pendulum Contact Fusion
 function c999999914.ffilter(c)
 	return c999999914.matfilter--c:IsFusionAttribute(ATTRIBUTE_EARTH)
-end
-function c999999914.splimit(e,se,sp,st)
-	return e:GetHandler():GetLocation()~=LOCATION_EXTRA
 end
 function c999999914.spfilter(c,fc)
 	return c999999914.matfilter(c)
