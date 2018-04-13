@@ -65,7 +65,7 @@ function c999999985.thop(e,tp,eg,ep,ev,re,r,rp)
 end
 function c999999985.spcon(e,tp,eg,ep,ev,re,r,rp)
 	local c=e:GetHandler()
-	return c:IsReason(REASON_EFFECT) and c:IsPreviousLocation(LOCATION_FZONE)
+	return c:IsReason(REASON_EFFECT) and c:IsPreviousLocation(LOCATION_ONFIELD)
 end
 function c999999985.spfilter(c,e,tp)
 	return c:IsSetCard(0x1115) and c:IsCanBeSpecialSummoned(e,0,tp,false,false)
