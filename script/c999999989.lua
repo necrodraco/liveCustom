@@ -6,28 +6,9 @@ function c999999989.initial_effect(c)
 	c:SetSPSummonOnce(999999989)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFunRep(c,c999999989.ffilter,2,false)
-	--spsummon condition
-	--special summon rule
-	local e99=Effect.CreateEffect(c)
-	e99:SetType(EFFECT_TYPE_FIELD)
-	e99:SetCode(EFFECT_SPSUMMON_PROC)
-	e99:SetProperty(EFFECT_FLAG_UNCOPYABLE)
-	e99:SetRange(LOCATION_EXTRA)
-	e99:SetCondition(c999999989.spcon)
-	e99:SetOperation(c999999989.spop)
-	e99:SetValue(SUMMON_TYPE_FUSION)
-	c:RegisterEffect(e99)
-	--It will automatically set to ATK. But it can be set facedown at the moment - TODO
-	local e98=Effect.CreateEffect(c)
-	e98:SetType(EFFECT_TYPE_FIELD)
-	e98:SetCode(EFFECT_SET_POSITION)
-	e98:SetProperty(EFFECT_FLAG_CANNOT_DISABLE+EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_SET_AVAILABLE)
-	e98:SetRange(LOCATION_MZONE)
-	e98:SetTarget(c999999989.target)
-	e98:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
-	e98:SetValue(POS_FACEUP_ATTACK)
-	c:RegisterEffect(e98)
+	aux.AddFusionProcFunRep(c,c999999989.matfilter,2,false)
+	Auxiliary.AddFakeLinkSummonRule(c,c999999989.matfilter,1,1)
+	Auxiliary.AddFakeLinkATKReq(c)
 	--stats down
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_FIELD)
@@ -84,28 +65,4 @@ function c999999989.thop(e,tp,eg,ep,ev,re,r,rp)
 		Duel.SendtoHand(g,nil,REASON_EFFECT)
 		Duel.ConfirmCards(1-tp,g)
 	end
-end
-
---Borrowed Code of Starving Venom Pendulum Contact Fusion
-function c999999989.ffilter(c)
-	return c999999989.matfilter
-end
-function c999999989.spfilter(c,fc)
-	return c999999989.matfilter(c)
-end
-function c999999989.spcon(e,c)
-	if c==nil then return true end
-	local tp=c:GetControler()
-	local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
-	return ft>-1
-		and Duel.IsExistingMatchingCard(c999999989.spfilter,tp,LOCATION_ONFIELD,nil,1,nil,tp,ft)
-end
-function c999999989.spop(e,tp,eg,ep,ev,re,r,rp,c)
-	local g=Duel.GetMatchingGroup(c999999989.spfilter,tp,LOCATION_MZONE,nil,nil,tp)
-	local g1=g:Select(tp,1,1,nil)
-	Duel.SendtoGrave(g1,REASON_COST)
-end
---Borrowed from Area A
-function c999999989.target(e,c)
-	return c:GetCode() == 999999989
 end
