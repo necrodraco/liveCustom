@@ -49,18 +49,11 @@ function Auxiliary.fakelinkcon(minc,spfilter,spcheck,manymustfulfill)
 	return function(e,c)
 			if c==nil then return true end
 			if c:IsType(TYPE_PENDULUM) and c:IsFaceup() then return false end
+			local tp=e:GetHandlerPlayer()
 			local ft=Duel.GetLocationCount(tp,LOCATION_MZONE)
-			--[[local check
-			if spcheck==nil then 
-				check=Duel.IsExistingMatchingCard(spfilter,tp,LOCATION_ONFIELD,nil,minc,nil,tp,ft)--the Number 2 represents the Min Count of Monsters
-			else 
-				local g=Duel.GetMatchingGroup(spfilter,tp,LOCATION_ONFIELD,nil)
-				g=g:Filter(spcheck)
-				--if --Last Savepoitnt: Adding Manymustfulfill
-				check=g:GetCount()>=minc--Duel.IsExistingMatchingCard(spfilter,tp,LOCATION_ONFIELD,nil,minc,nil,tp,ft)
-			end]]
-			return ft>-minc--Min Count of Monsters
-				and Duel.IsExistingMatchingCard(spfilter,tp,LOCATION_ONFIELD,nil,minc,nil,tp,ft)--the Number 2 represents the Min Count of Monsters
+			return ft>-minc 
+			 and Duel.IsExistingMatchingCard(spfilter,tp,LOCATION_ONFIELD,nil,minc,nil,tp,ft)--the Number 2 represents the Min Count of Monsters
+			 and (spcheck==nil or spcheck(Duel.GetMatchingGroup(spfilter,tp,LOCATION_ONFIELD,nil,nil)))
 		end
 end
 
