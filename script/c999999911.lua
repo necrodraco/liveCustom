@@ -6,8 +6,7 @@ function c999999911.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,c999999911.filter,2,false)
 	Auxiliary.AddFakeLinkSummonLimit(c)
-	Auxiliary.AddFakeLinkSummonRule(c,c999999911.filter,2,2)
-	Auxiliary.AddFakeLinkATKReq(c)
+	Auxiliary.AddFakeLinkProcedure(c,c999999911.filter,2,2,c999999911.spcheck)
 	--splimit
 	local e1=Effect.CreateEffect(c)
 	e1:SetProperty(EFFECT_FLAG_CANNOT_DISABLE)
@@ -40,9 +39,9 @@ end
 function c999999911.filter(c,lc,sumtype,tp)
 	return not c:IsType(TYPE_TOKEN,lc,sumtype,tp)
 end
---[[function c999999911.spcheck(g,lc,tp)
-	return g:GetClassCount(Card.GetRace,lc,SUMMON_TYPE_LINK,tp)==1
-end]]
+function c999999911.spcheck(g,lc,tp)
+	return g:GetClassCount(Card.GetRace,lc,SUMMON_TYPE_Fusion,tp)==1
+end
 function c999999911.regcon(e,tp,eg,ep,ev,re,r,rp)
 	return bit.band(e:GetHandler():GetSummonType(),SUMMON_TYPE_FUSION)==SUMMON_TYPE_FUSION
 end

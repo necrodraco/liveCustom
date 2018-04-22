@@ -7,8 +7,7 @@ function c999999920.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,c999999920.matfilter,2,false)
 	Auxiliary.AddFakeLinkSummonLimit(c)
-	Auxiliary.AddFakeLinkSummonRule(c,c999999920.matfilter,3,3)
-	Auxiliary.AddFakeLinkATKReq(c)
+	Auxiliary.AddFakeLinkProcedure(c,c999999920.matfilter,3,3,c999999920.spcheck)
 	--to grave
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(aux.Stringid(999999920,0))
@@ -43,6 +42,9 @@ function c999999920.initial_effect(c)
 	e3:SetTarget(c999999920.thtg)
 	e3:SetOperation(c999999920.thop)
 	c:RegisterEffect(e3)
+end
+function c999999920.spcheck(g,lc,tp)
+	return g:GetClassCount(Card.GetRace,lc,SUMMON_TYPE_LINK,tp)==g:GetCount() and g:GetClassCount(Card.GetAttribute,lc,SUMMON_TYPE_LINK,tp)==1
 end
 function c999999920.tgcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)

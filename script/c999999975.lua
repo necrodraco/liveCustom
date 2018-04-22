@@ -4,9 +4,8 @@ function c999999975.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
 	Auxiliary.AddFusionProcFunRep(c,c999999975.matfilter,2,false)
+	Auxiliary.AddFakeLinkProcedure(c,c999999975.matfilter,2,2)
 	Auxiliary.AddFakeLinkSummonLimit(c)
-	Auxiliary.AddFakeLinkSummonRule(c,c999999975.matfilter,2,2)
-	Auxiliary.AddFakeLinkATKReq(c)
 	--destroy replace
 	--[[local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_CONTINUOUS+EFFECT_TYPE_FIELD)

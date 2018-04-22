@@ -7,8 +7,7 @@ function c999999992.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,c999999992.matfilter,2,false)
-	Auxiliary.AddFakeLinkSummonRule(c,c999999992.matfilter,1,1)
-	Auxiliary.AddFakeLinkATKReq(c)
+	Auxiliary.AddFakeLinkProcedure(c,c999999992.matfilter,1,1)
 	
 	--stats up
 	local e1=Effect.CreateEffect(c)

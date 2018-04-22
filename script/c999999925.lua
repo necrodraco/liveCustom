@@ -6,8 +6,7 @@ function c999999925.initial_effect(c)
 	c:EnableReviveLimit()
 	aux.AddFusionProcFunRep(c,c999999925.matfilter,2,false)
 	Auxiliary.AddFakeLinkSummonLimit(c)
-	Auxiliary.AddFakeLinkSummonRule(c,c999999925.matfilter,2,3)
-	Auxiliary.AddFakeLinkATKReq(c)
+	Auxiliary.AddFakeLinkProcedure(c,c999999925.matfilter,2,3)
 end
 
 function c999999925.matfilter(c,scard,sumtype,tp)
