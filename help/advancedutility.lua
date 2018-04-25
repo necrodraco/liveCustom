@@ -39,3 +39,7 @@ function Auxiliary.SpElimFilter(c,mustbefaceup,includemzone)
 		return includemzone or c:IsLocation(LOCATION_GRAVE)
 	end
 end
+
+Card.IsLevel=function(c,lv)
+	return c:GetLevel()==lv
+end
