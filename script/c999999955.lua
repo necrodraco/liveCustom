@@ -1,4 +1,5 @@
 --トポロジック・ボマー・ドラゴン
+--reused by chevalierx thx to allow me to use these cards
 --reused by NecroDraco
 function c999999955.initial_effect(c)
 	--fusion material
@@ -38,11 +39,10 @@ function c999999955.cfilter(c,zone)
 	return bit.extract(zone,seq)~=0
 end
 function c999999955.descon(e,tp,eg,ep,ev,re,r,rp)
-	--local zone=Duel.GetLinkedZone(0)+Duel.GetLinkedZone(1)*0x10000
-	return not eg:IsContains(e:GetHandler()) and eg:IsExists(c999999955.cfilter,1,nil)
+	return not eg:IsContains(e:GetHandler()) and eg:FilterCount(Card.IsType,nil,TYPE_MONSTER)>0
 end
 function c999999955.desfilter(c)
-	return c:GetSequence()<5
+	return c:GetCode()~=999999955
 end
 function c999999955.destg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end

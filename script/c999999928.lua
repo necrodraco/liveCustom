@@ -1,4 +1,5 @@
 --トポロジック・トゥリスバエナ
+--reused by chevalierx thx to allow me to use these cards
 --reused by NecroDraco
 function c999999928.initial_effect(c)
 	--fusion material
@@ -18,7 +19,7 @@ function c999999928.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function c999999928.cfilter(c,ec)
-	return ec:IsContains(c)
+	return c:IsType(TYPE_MONSTER) and c:IsFaceup() and c:GetCode()~=999999928
 end
 function c999999928.rmcon(e,tp,eg,ep,ev,re,r,rp)
 	return eg:IsExists(c999999928.cfilter,1,nil,e:GetHandler())
