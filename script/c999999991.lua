@@ -1,7 +1,7 @@
 --閃刀姫－レイ
 --Brandish Maiden Rei
 --Script by nekrozar, completed by Eerie Code
---reused by Necrodraco
+--reused by necrodraco
 function c999999991.initial_effect(c)
 	--special summon
 	local e1=Effect.CreateEffect(c)
@@ -22,7 +22,7 @@ function c999999991.initial_effect(c)
 	e2:SetProperty(EFFECT_FLAG_DAMAGE_STEP+EFFECT_FLAG_DELAY)
 	e2:SetCode(EVENT_LEAVE_FIELD)
 	e2:SetRange(LOCATION_GRAVE)
-	e2:SetCountLimit(1,999999987)
+	e2:SetCountLimit(1,26077388)
 	e2:SetCondition(c999999991.spcon2)
 	e2:SetTarget(c999999991.sptg2)
 	e2:SetOperation(c999999991.spop2)
@@ -69,7 +69,7 @@ function c999999991.spop1(e,tp,eg,ep,ev,re,r,rp)
 	e1:Reset()
 end
 function c999999991.cfilter(c,tp,rp)
-	return c:IsPreviousPosition(POS_FACEUP) and c:GetPreviousControler()==tp --and c:GetPreviousTypeOnField()&TYPE_LINK~=0
+	return c:IsPreviousPosition(POS_FACEUP) and c:GetPreviousControler()==tp and bit.band(c:GetPreviousTypeOnField(),TYPE_FUSION)~=0
 		and c:IsPreviousSetCard(0x1115) and (c:IsReason(REASON_BATTLE) or (rp~=tp and c:IsReason(REASON_EFFECT)))
 end
 function c999999991.spcon2(e,tp,eg,ep,ev,re,r,rp)
