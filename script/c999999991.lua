@@ -44,10 +44,7 @@ function c999999991.sptg1(e,tp,eg,ep,ev,re,r,rp,chk)
 		e1:SetTargetRange(1,0)
 		e1:SetValue(96)
 		Duel.RegisterEffect(e1,tp)
-		local noextramonstercount = Duel.GetMatchingGroupCount(c999999991.mmfilter,tp,LOCATION_ONFIELD,nil,nil)
-		Debug.Message("ExtraMonstercount target: ")
-		Debug.Message(noextramonstercount)
-		local res=noextramonstercount==0
+		local res=Duel.GetMatchingGroupCount(c999999991.mmfilter,tp,LOCATION_ONFIELD,nil,nil)==0
 			and Duel.IsExistingMatchingCard(c999999991.spfilter1,tp,LOCATION_EXTRA,0,1,nil,e,tp)
 		e1:Reset()
 		return res
@@ -62,10 +59,7 @@ function c999999991.spop1(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetTargetRange(1,0)
 	e1:SetValue(96)
 	Duel.RegisterEffect(e1,tp)
-	local noextramonstercount = Duel.GetMatchingGroupCount(c999999991.mmfilter,tp,LOCATION_ONFIELD,nil,nil)
-	Debug.Message("ExtraMonstercount resolve: ")
-	Debug.Message(noextramonstercount)
-	if noextramonstercount==0 then
+	if Duel.GetMatchingGroupCount(c999999991.mmfilter,tp,LOCATION_ONFIELD,nil,nil)==0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local g=Duel.SelectMatchingCard(tp,c999999991.spfilter1,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 		if g:GetCount()>0 then
