@@ -44,7 +44,10 @@ function c999999991.sptg1(e,tp,eg,ep,ev,re,r,rp,chk)
 		e1:SetTargetRange(1,0)
 		e1:SetValue(96)
 		Duel.RegisterEffect(e1,tp)
-		local res=Duel.GetLocationCountFromEx(tp,tp,e:GetHandler())>0
+		local noextramonstercount = Duel.GetMatchingGroupCount(c999999991.mmfilter,tp,LOCATION_ONFIELD,nil,nil)
+		Debug.Message("ExtraMonstercount target: ")
+		Debug.Message(noextramonstercount)
+		local res=noextramonstercount==0
 			and Duel.IsExistingMatchingCard(c999999991.spfilter1,tp,LOCATION_EXTRA,0,1,nil,e,tp)
 		e1:Reset()
 		return res
@@ -59,7 +62,10 @@ function c999999991.spop1(e,tp,eg,ep,ev,re,r,rp)
 	e1:SetTargetRange(1,0)
 	e1:SetValue(96)
 	Duel.RegisterEffect(e1,tp)
-	if Duel.GetLocationCountFromEx(tp)>0 then
+	local noextramonstercount = Duel.GetMatchingGroupCount(c999999991.mmfilter,tp,LOCATION_ONFIELD,nil,nil)
+	Debug.Message("ExtraMonstercount resolve: ")
+	Debug.Message(noextramonstercount)
+	if noextramonstercount==0 then
 		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
 		local g=Duel.SelectMatchingCard(tp,c999999991.spfilter1,tp,LOCATION_EXTRA,0,1,1,nil,e,tp)
 		if g:GetCount()>0 then
@@ -67,6 +73,9 @@ function c999999991.spop1(e,tp,eg,ep,ev,re,r,rp)
 		end
 	end
 	e1:Reset()
+end
+function c999999991.mmfilter(c)
+	return c:GetSummonLocation()==LOCATION_EXTRA
 end
 function c999999991.cfilter(c,tp,rp)
 	return c:IsPreviousPosition(POS_FACEUP) and c:GetPreviousControler()==tp and bit.band(c:GetPreviousTypeOnField(),TYPE_FUSION)~=0
