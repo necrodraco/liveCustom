@@ -6,7 +6,6 @@ function c999999992.initial_effect(c)
 	c:SetSPSummonOnce(999999992)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFunRep(c,c999999992.matfilter,2,false)
 	Auxiliary.AddFakeLinkProcedure(c,c999999992.matfilter,1,1)
 	
 	--stats up

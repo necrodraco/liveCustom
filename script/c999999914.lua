@@ -5,7 +5,6 @@ function c999999914.initial_effect(c)
 	c:SetSPSummonOnce(999999914)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFunRep(c,c999999914.ffilter,2,false)
 	Auxiliary.AddFakeLinkProcedure(c,c999999914.ffilter,1,1)
 	--direct attack
 	local e1=Effect.CreateEffect(c)

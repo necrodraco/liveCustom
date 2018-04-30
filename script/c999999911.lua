@@ -4,7 +4,6 @@
 function c999999911.initial_effect(c)
 	--fusion material
 	c:EnableReviveLimit()
-	aux.AddFusionProcFunRep(c,c999999911.filter,2,false)
 	Auxiliary.AddFakeLinkSummonLimit(c)
 	Auxiliary.AddFakeLinkProcedure(c,c999999911.filter,2,2,c999999911.spcheck)
 	--splimit
