@@ -57,7 +57,7 @@ end
 function c999999981.drtg(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return true end
 	Duel.SetTargetPlayer(tp)
-	Duel.SetTargetParam1
+	Duel.SetTargetParam(1)
 	Duel.SetOperationInfo(0,CATEGORY_DRAW,nil,0,tp,1)
 end
 function c999999981.drop(e,tp,eg,ep,ev,re,r,rp)
@@ -69,7 +69,7 @@ function c999999981.tdcon(e,tp,eg,ep,ev,re,r,rp)
 	return c:IsReason(REASON_EFFECT) and c:IsPreviousLocation(LOCATION_ONFIELD)
 end
 function c999999981.tdfilter(c)
-	return c:IsSetCard(0x115) and not c:IsCode(999999981) and c:IsAbleToDeck()
+	return c:IsSetCard(0x115) and not c:IsCode(999999981)-- and c:IsAbleToDeck()
 end
 function c999999981.tdtg(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
 	if chkc then return chkc:IsLocation(LOCATION_GRAVE) and chkc:IsControler(tp) and c999999981.tdfilter(chkc) end
