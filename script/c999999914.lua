@@ -5,7 +5,7 @@ function c999999914.initial_effect(c)
 	c:SetSPSummonOnce(999999914)
 	--fusion material
 	c:EnableReviveLimit()
-	Auxiliary.AddFakeLinkProcedure(c,c999999914.ffilter,1,1)
+	Auxiliary.AddFakeLinkProcedure(c,c999999914.matfilter,1,1)
 	--direct attack
 	local e1=Effect.CreateEffect(c)
 	e1:SetType(EFFECT_TYPE_SINGLE)
@@ -37,7 +37,4 @@ function c999999914.gyop(e,tp,eg,ep,ev,re,r,rp)
 	if g:GetCount()>0 then
 		Duel.SendtoGrave(g,REASON_EFFECT)
 	end
-end
-function c999999914.ffilter(c)
-	return c999999914.matfilter
 end
