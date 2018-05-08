@@ -61,12 +61,13 @@ function c999999911.thcon(e,tp,eg,ep,ev,re,r,rp)
 	return e:GetHandler():IsSummonType(SUMMON_TYPE_FUSION)
 end
 function c999999911.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
-	local lg=e:GetHandler()--:GetLinkedGroup():Filter(Card.IsAbleToHand,nil)
 	if chk==0 then return true end
+	local lg=Duel.SelectTarget(tp,Card.IsAbleToHand,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,0,2,nil)--e:GetHandler()--:GetLinkedGroup():Filter(Card.IsAbleToHand,nil)
 	Duel.SetOperationInfo(0,CATEGORY_TOHAND,lg,lg:GetCount(),0,0)
 end
 function c999999911.thop(e,tp,eg,ep,ev,re,r,rp)
-	local lg=e:GetHandler()--:GetLinkedGroup():Filter(Card.IsAbleToHand,nil)
+	local lg=Duel.GetChainInfo(0,CHAININFO_TARGET_CARDS):Filter(Card.IsRelateToEffect,nil,e)--Duel.SelectTarget(tp,Card.IsAbleToHand,tp,LOCATION_ONFIELD,LOCATION_ONFIELD,0,2,nil)
+	--local lg=e:GetHandler()--:GetLinkedGroup():Filter(Card.IsAbleToHand,nil)
 	Duel.SendtoHand(lg,nil,REASON_EFFECT)
 end
 --[[function c999999911.actg(e,tp,eg,ep,ev,re,r,rp,chk)
