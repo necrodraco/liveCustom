@@ -67,5 +67,17 @@ end
 
 --Borrowed from Area A
 function Auxiliary.fakelinktarget(e,c)
-	return c:GetCode() == e:GetHandler():GetCode()
+	return c == e:GetHandler()
+end
+
+--Todo: Check if it is exactly a Monster which use this summon system(e.g. Flag?)
+function Auxiliary.containsFakeLinkMonsterFilter(c)
+	return c:IsType(TYPE_FUSION)
+end
+
+--Imitate Link Zones = Check if there is a fake link monster on the field
+function Duel.GetLinkedZone(tp)
+	local hasFakeLinkMonster = Duel.IsExistingMatchingCard(containsFakeLinkMonsterFilter,tp,LOCATION_ONFIELD,nil,1,nil,tp,ft)
+	if hasFakeLinkMonster then return 1 end
+	return 0
 end

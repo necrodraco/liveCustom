@@ -1,0 +1,78 @@
+--レグレクス・パラディオン
+--Regulex Palladion
+--reused by necrodraco
+function c999999888.initial_effect(c)
+	--c:EnableReviveLimit()
+	--aux.AddLinkProcedure()
+	c:EnableReviveLimit()
+	Auxiliary.AddFakeLinkSummonLimit(c)
+	Auxiliary.AddFakeLinkProcedure(c,aux.FilterBoolFunction(Card.IsType,TYPE_EFFECT),2,2,c999999888.lcheck,1)
+	--atk up
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_SINGLE)
+	e1:SetCode(EFFECT_UPDATE_ATTACK)
+	e1:SetProperty(EFFECT_FLAG_SINGLE_RANGE)
+	e1:SetRange(LOCATION_MZONE)
+	e1:SetValue(c999999888.atkval)
+	c:RegisterEffect(e1)
+	--cannot attack
+	local e2=Effect.CreateEffect(c)
+	e2:SetType(EFFECT_TYPE_FIELD)
+	e2:SetCode(EFFECT_CANNOT_ATTACK)
+	e2:SetRange(LOCATION_MZONE)
+	e2:SetTargetRange(LOCATION_MZONE,LOCATION_MZONE)
+	e2:SetTarget(c999999888.atklimit)
+	c:RegisterEffect(e2)
+	--Search
+	local e3=Effect.CreateEffect(c)
+	e3:SetDescription(aux.Stringid(999999888,0))
+	e3:SetType(EFFECT_TYPE_FIELD+EFFECT_TYPE_TRIGGER_O)
+	e3:SetProperty(EFFECT_FLAG_DELAY)
+	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
+	e3:SetCountLimit(1,999999888)
+	e3:SetRange(LOCATION_MZONE)
+	e3:SetCondition(c999999888.thcon)
+	e3:SetTarget(c999999888.thtg)
+	e3:SetOperation(c999999888.thop)
+	c:RegisterEffect(e3)	
+end
+function c999999888.lcheck(g,lc)
+	return g:IsExists(Card.IsFusionSetCard,1,nil,0x116)
+end
+function c999999888.matfilter(c)
+	return c:IsFusionSetCard(0x116) and not c:IsCode(3679218)
+end
+function c999999888.filter(c)
+	return c:IsFaceup() and not c:IsCode(999999888)
+end
+function c999999888.atkval(e,c)
+	local tp = e:GetHandlerPlayer()
+	local g=Duel.GetMatchingGroup(c999999888.filter,tp,LOCATION_MZONE,nil,nil,tp)
+	return g:GetSum(Card.GetBaseAttack)
+end
+function c999999888.atklimit(e,c)
+	return e:GetHandler() ~= c
+end
+function c999999888.thcfilter(c,tp,lg)
+	return c:IsType(TYPE_EFFECT) and lg:IsContains(c)
+end
+function c999999888.thcon(e,tp,eg,ep,ev,re,r,rp)
+	local lg=Duel.GetMatchingGroup(c999999888.filter,tp,LOCATION_MZONE,nil,nil,tp)
+	return eg:IsExists(c999999888.thcfilter,1,nil,tp,lg)
+end
+function c999999888.thfilter(c,tp)
+	return (c:IsType(TYPE_SPELL) or c:IsType(TYPE_TRAP)) and c:IsSetCard(0x116) and c:IsAbleToHand()
+end
+function c999999888.thtg(e,tp,eg,ep,ev,re,r,rp,chk)
+	if chk==0 then return Duel.IsExistingMatchingCard(c999999888.thfilter,tp,LOCATION_DECK,0,1,nil,tp) end
+	Duel.SetOperationInfo(0,CATEGORY_TOHAND,nil,1,tp,LOCATION_DECK)
+end
+function c999999888.thop(e,tp,eg,ep,ev,re,r,rp)
+	Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_ATOHAND)
+	local g1=Duel.SelectMatchingCard(tp,c999999888.thfilter,tp,LOCATION_DECK,0,1,1,nil,tp)
+	if g1:GetCount()>0 then
+		Duel.SendtoHand(g1,nil,REASON_EFFECT)
+		Duel.ConfirmCards(1-tp,g1)
+	end
+end
+
